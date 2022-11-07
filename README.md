@@ -48,9 +48,10 @@ If you haven't worked with Laravel before, here is a quick breakdown of the key 
 
 ## HOW TO USE THE API
 
-There are three URL routes that the API offers:
+There are four URL endpoints that the API offers:
 
 * GET '/api/customers' -> using a GET request to this URL will return all of the Customers in the DB in JSON format, wrapped in an array called 'data'.
+* GET '/api/customers/{id}' -> using a GET request and passing in a Customer ID to this URL will return the specified Customer as a JSON object.
 * POST '/api/customers' -> using a POST request to this URL will tell the API to store a new Customer in the DB. Data should be sent to the API in JSON format, and the API accepts the following key => value pairs:
     * 'name' => String
     * 'address' => String
