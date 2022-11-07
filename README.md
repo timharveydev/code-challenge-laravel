@@ -12,7 +12,7 @@ To set up this project on your local machine, follow the steps below:
 5. In your terminal, cd into the project directory. Run the command "composer install" to install all of Laravel's dependencies.
 6. Lastly, run the command "php artisan serve". The laravel site should now be up and running at the following address "127.0.0.1:8000".
 
-If everything worked correctly, you should now be presented wth the default Laravel homepage.
+If everything worked correctly, you should now be presented with the default Laravel homepage.
 
 
 ## KEY FOLDERS & FILES
