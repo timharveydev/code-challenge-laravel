@@ -13,14 +13,31 @@ use Illuminate\Http\Request;
 class CustomerController extends Controller
 {
     /**
-     * Return a listing of all Customers.
+     * Return a listing of all Customers if no search term provided.
+     * If search term is provided, return filtered collection of customers.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Return all Customers via the CustomerResource
-        return CustomerResource::collection(Customer::all());
+        if (!$request->searchTerm) {
+            // Return all Customers via the CustomerResource
+            return CustomerResource::collection(Customer::all());
+        } else {
+            // Return only Customers matching search term
+            return CustomerResource::collection(
+
+                Customer::where('name', 'LIKE', '%' . $request->searchTerm . '%')
+                    ->orWhereHas('policy', function ($query) use ($request) {
+                        $query->where('name', 'LIKE', '%' . $request->searchTerm . '%');
+                    })
+                    ->orWhereHas('insurer', function ($query) use ($request) {
+                        $query->where('name', 'LIKE', '%' . $request->searchTerm . '%');
+                    })
+                    ->get()
+
+            );
+        }
     }
 
 

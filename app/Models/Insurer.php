@@ -10,4 +10,12 @@ class Insurer extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'customer_id'];
+
+    /**
+     * Establish relationship to Customer model
+     */
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }
